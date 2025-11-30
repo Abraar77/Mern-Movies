@@ -1,0 +1,41 @@
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+
+const colorMap = {
+  "yellow-500": "text-yellow-500",
+  "red-500": "text-red-500",
+  white: "text-white",
+};
+
+const Rating = ({ value = 0, text, color }) => {
+  const safeValue = Number(value) || 0; // prevents NaN crash
+
+  const fullStars = Math.floor(safeValue);
+  const halfStars = safeValue % 1 >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStars;
+
+  const colorClass = colorMap[color] || "text-yellow-500";
+
+  return (
+    <div className="flex items-center">
+      {[...Array(fullStars)].map((_, i) => (
+        <FaStar key={`full-${i}`} className={`${colorClass} ml-1`} />
+      ))}
+
+      {halfStars === 1 && (
+        <FaStarHalfAlt className={`${colorClass} ml-1`} />
+      )}
+
+      {[...Array(emptyStars)].map((_, i) => (
+        <FaRegStar key={`empty-${i}`} className={`${colorClass} ml-1`} />
+      ))}
+
+      {text && <span className="ml-2 text-white">{text}</span>}
+    </div>
+  );
+};
+
+Rating.defaultProps = {
+  color: "yellow-500",
+};
+
+export default Rating;

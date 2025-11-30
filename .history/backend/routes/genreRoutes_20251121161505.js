@@ -1,0 +1,1 @@
+import { authenticate,  } from "../middlewares/authMiddleware";

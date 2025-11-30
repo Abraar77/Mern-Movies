@@ -1,0 +1,25 @@
+import Genre from "../models/Genre.js";
+import asyncHandler from "../middlewares/asyncHandler.js";
+
+const createGenre = asyncHandler(async(req,res)=>{
+    const {genreName} = req.body
+    const alreadyExist= await Genre.find({genreName})
+    if(alreadyExist){
+        res.status(400)
+        throw new Error("genre already exists")
+    }
+    else{
+        try {
+            await genreName.save()
+
+          res.status(200).json({
+            id:genreName._id,
+            name:genreName.name
+          })
+        } catch (error) {
+            
+        }
+    }
+})
+
+export{createGenre}

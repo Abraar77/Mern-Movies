@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+body {
+    background: #0f0f10;
+    color: #fff;
+  }
+  
+  input,
+  textarea {
+    color: #000;
+  }
+  
+  select option {
+    color: black;
+  }
+
+
+  /* Change arrow color */
+.slick-prev:before,
+.slick-next:before {
+  color: white !important;
+  font-size: 30px; /* optional—make arrows bigger */
+}
